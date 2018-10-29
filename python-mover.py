@@ -6,7 +6,7 @@ lang_strings = {
     "pt-BR" : {
         "path" : "Digite o caminho do repositório\n",
         "image_cnt" : "Quantas imagens deseja mover?\n",
-        "create_dir" : "\nDeseja criar um novo diretório ou mover as imagens para um diretório existente?\n",
+        "create_dir" : "\nDeseja criar um novo diretório ou mover as imagens para um diretório existente?\n1 para CRIAR\n2 para MOVER",
         "new_dir_name" : 'Digite o nome do novo diretório\n',
         "new_dir_path" :  'Digite o local do diretório\n',
         "moving-image" : 'Movendo imagem - ',
@@ -17,7 +17,7 @@ lang_strings = {
     "en-US" : {
         "path" : "Type the name of the repository\n",
         "image_cnt" : "How many images do you want to move?\n",
-        "create_dir" : "\nDo you want to create a new directory or move the images to a existing directory?\n",
+        "create_dir" : "\nDo you want to create a new directory or move the images to an existing directory?\n1 for CREATE\n2 for MOVE\n",
         "new_dir_name" : 'Type the name of the new directory\n',
         "new_dir_path" :  'Type the path of the new directory\n',
         "moving-image" : 'Moving image - ',
@@ -30,11 +30,12 @@ strings = lang_strings[lang]
 
 path = input(strings["path"])
 os.chdir(path)
-files = sorted(os.listdir(path))
 total = int(input(strings["image_cnt"]))
 
 
 while True:
+    files = sorted(os.listdir(path))
+    
     question = int(input(strings["create_dir"]))
     if question == 1:
         mvdir = input(strings["new_dir_name"])
@@ -53,5 +54,6 @@ while True:
     choice = int(input(strings["continue"]))
     if choice == 2:
         break
+    os.chdir(path)
 
 print(strings["finalized"])
